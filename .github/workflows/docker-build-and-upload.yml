@@ -23,15 +23,6 @@ jobs:
       run: |
         docker build -t $IMAGE_TAG .
 
-    - name: Check if file already exists
-      run: |
-        if [ -f "newapiselfbuild.tar.gz" ]; then
-          echo "newapiselfbuild.tar.gz already exists, deleting it..."
-          rm newapiselfbuild.tar.gz
-        else
-          echo "No existing newapiselfbuild.tar.gz found."
-        fi
-
     - name: Save Docker image to a tar file
       run: |
         docker save $IMAGE_TAG | gzip > newapiselfbuild.tar.gz
